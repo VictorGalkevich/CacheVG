@@ -1,7 +1,7 @@
 package cachevg.runner;
 
 import cachevg.connection.tcp.server.Server;
-import cachevg.parser.MessageParser;
+import cachevg.connection.tcp.parser.MessageParser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

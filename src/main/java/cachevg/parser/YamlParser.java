@@ -1,6 +1,7 @@
 package cachevg.parser;
 
 import cachevg.config.ServerStartupProperties;
+import cachevg.connection.tcp.parser.Parser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.yaml.snakeyaml.LoaderOptions;
@@ -11,7 +12,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class YamlParser implements Parser <String, ServerStartupProperties> {
+public class YamlParser implements Parser<String, ServerStartupProperties> {
     private static final Logger log = LogManager.getLogger(YamlParser.class);
     @Override
     public ServerStartupProperties parse(String from) {

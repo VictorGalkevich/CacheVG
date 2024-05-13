@@ -1,4 +1,4 @@
-package cachevg.parser;
+package cachevg.connection.tcp.parser;
 
 public enum ParsingPhase {
         HEADER,

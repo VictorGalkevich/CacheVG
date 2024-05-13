@@ -1,4 +1,4 @@
-package cachevg.parser;
+package cachevg.connection.tcp.parser;
 
 import java.net.SocketAddress;
 import java.util.List;

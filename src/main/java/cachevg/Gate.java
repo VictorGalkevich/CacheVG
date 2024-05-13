@@ -3,7 +3,7 @@ package cachevg;
 import cachevg.config.ServerConfig;
 import cachevg.config.ServerStartupProperties;
 import cachevg.connection.tcp.server.Server;
-import cachevg.parser.MessageParser;
+import cachevg.connection.tcp.parser.MessageParser;
 import cachevg.parser.YamlParser;
 import cachevg.runner.ServerStarter;
 import com.sun.management.OperatingSystemMXBean;

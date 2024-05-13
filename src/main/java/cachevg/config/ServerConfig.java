@@ -2,8 +2,8 @@ package cachevg.config;
 
 import cachevg.connection.tcp.server.NIOServer;
 import cachevg.connection.tcp.server.Server;
-import cachevg.parser.AutomataParser;
-import cachevg.parser.MessageParser;
+import cachevg.connection.tcp.parser.AutomataParser;
+import cachevg.connection.tcp.parser.MessageParser;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

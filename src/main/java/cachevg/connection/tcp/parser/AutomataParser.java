@@ -1,4 +1,4 @@
-package cachevg.parser;
+package cachevg.connection.tcp.parser;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static cachevg.parser.ParsingPhase.*;
-import static cachevg.parser.ParsingPhase.LENGTH;
+import static cachevg.connection.tcp.parser.ParsingPhase.*;
+import static cachevg.connection.tcp.parser.ParsingPhase.LENGTH;
 
 public class AutomataParser implements MessageParser{
     private static final Logger log = LogManager.getLogger(AutomataParser.class);
