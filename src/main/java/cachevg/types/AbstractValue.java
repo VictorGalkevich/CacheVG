@@ -12,6 +12,4 @@ public abstract class AbstractValue<T> {
         this.ttl = ttl;
         this.createdAt = createdAt;
     }
-
-    
 }
