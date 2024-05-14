@@ -12,10 +12,13 @@ public class DefaultString extends AbstractValue<String>{
     }
 
     public String substring(int from, int to) {
-        return this.value.substring(from, to);
+        if (to == -1) {
+            return this.value.substring(from);
+        }
+        return this.value.substring(from, to + 1);
     }
 
-    public String setRange(int from, int value) {
+    public String setRange(int from, String value) {
         return this.value.substring(0, from) + value;
     }
 
@@ -62,7 +65,7 @@ public class DefaultString extends AbstractValue<String>{
     public String setBit(int index, char bit) {
         byte[] bytes = this.value.getBytes();
         int byteIndex = index / 8;
-        int bitIndex = index % 8;
+        int bitIndex = 7 - index % 8;
         if (bit == '1') {
             bytes[byteIndex] = (byte) (bytes[byteIndex] | (1 << bitIndex));
         } else {
@@ -75,14 +78,14 @@ public class DefaultString extends AbstractValue<String>{
     public char getBit(int index) {
         byte[] bytes = this.value.getBytes();
         int byteIndex = index / 8;
-        int bitIndex = index % 8;
+        int bitIndex = 7 - index % 8;
         return (bytes[byteIndex] & (1 << bitIndex)) != 0 ? '1' : '0';
     }
 
     public String flip(int index) {
         byte[] bytes = this.value.getBytes();
         int byteIndex = index / 8;
-        int bitIndex = index % 8;
+        int bitIndex = 7 - index % 8;
         bytes[byteIndex] = (byte) (bytes[byteIndex] ^ (1 << bitIndex));
         this.value = new String(bytes);
         return this.value;
