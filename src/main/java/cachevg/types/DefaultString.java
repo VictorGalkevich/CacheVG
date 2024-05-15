@@ -1,5 +1,6 @@
 package cachevg.types;
 
+import java.nio.charset.StandardCharsets;
 import java.time.OffsetDateTime;
 
 public class DefaultString extends AbstractValue<String>{
@@ -96,8 +97,7 @@ public class DefaultString extends AbstractValue<String>{
         for (int i = 0; i < bytes.length; i++) {
             bytes[i] = (byte) ~bytes[i];
         }
-        this.value = new String(bytes);
-        return this.value;
+        return new String(bytes);
     }
 
     public String conjunction(String other) {
@@ -111,42 +111,22 @@ public class DefaultString extends AbstractValue<String>{
     }
 
     public String disjunction(String other) {
-        byte[] bytes = this.value.getBytes();
-        byte[] otherBytes = other.getBytes();
+        byte[] bytes = this.value.getBytes(StandardCharsets.UTF_16LE);
+        byte[] otherBytes = other.getBytes(StandardCharsets.UTF_16LE);
         byte[] result = new byte[bytes.length];
         for (int i = 0; i < bytes.length; i++) {
             result[i] = (byte) (bytes[i] | otherBytes[i]);
         }
-        return new String(result);
+        return new String(result, StandardCharsets.UTF_16LE);
     }
 
     public String xor(String other) {
-        byte[] bytes = this.value.getBytes();
-        byte[] otherBytes = other.getBytes();
+        byte[] bytes = this.value.getBytes(StandardCharsets.UTF_16LE);
+        byte[] otherBytes = other.getBytes(StandardCharsets.UTF_16LE);
         byte[] result = new byte[bytes.length];
         for (int i = 0; i < bytes.length; i++) {
             result[i] = (byte) (bytes[i] ^ otherBytes[i]);
         }
-        return new String(result);
-    }
-
-    public String shiftLeft(int shift) {
-        byte[] bytes = this.value.getBytes();
-        byte[] shifted = new byte[bytes.length];
-        for (int i = 0; i < bytes.length; i++) {
-            shifted[i] = (byte) (bytes[i] << shift);
-        }
-        this.value = new String(shifted);
-        return this.value;
-    }
-
-    public String shiftRight(int shift) {
-        byte[] bytes = this.value.getBytes();
-        byte[] shifted = new byte[bytes.length];
-        for (int i = 0; i < bytes.length; i++) {
-            shifted[i] = (byte) (bytes[i] >> shift);
-        }
-        this.value = new String(shifted);
-        return this.value;
+        return new String(result, StandardCharsets.UTF_16LE);
     }
 }

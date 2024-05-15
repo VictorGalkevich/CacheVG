@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.OffsetDateTime;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -131,21 +132,30 @@ public class DefaultStringTest {
 
     @Test
     void testConjunction() {
+        String actual = string.conjunction(new String(stringBytes));
+
+        assertEquals(actual, string.value);
     }
 
     @Test
     void testDisjunction() {
+        byte[] bytes = new byte[8];
+        Arrays.fill(bytes, (byte) ~0);
+        String expected = new String(bytes);
+
+        String actual = string.disjunction(string.not());
+
+        assertEquals(expected, actual);
     }
 
     @Test
     void testXor() {
-    }
+        byte[] bytes = new byte[8];
+        Arrays.fill(bytes, (byte) 0);
+        String expected = new String(bytes);
 
-    @Test
-    void testShiftLeft() {
-    }
+        String actual = string.xor(string.value);
 
-    @Test
-    void testShiftRight() {
+        assertEquals(expected, actual);
     }
 }
