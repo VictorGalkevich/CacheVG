@@ -92,4 +92,14 @@ public class ConnectedList extends AbstractValue<LinkedList<String>> {
     public int length() {
         return this.value.size();
     }
+
+    /**
+     * Returns the element at the specified position in this list.
+     *
+     * @param index index of the element to return
+     * @return the element at the specified position in this list
+     */
+    public String get(int index) {
+        return this.value.get(index);
+    }
 }
