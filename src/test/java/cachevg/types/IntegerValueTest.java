@@ -1,5 +1,6 @@
 package cachevg.types;
 
+import cachevg.db.types.IntegerValue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
