@@ -22,6 +22,7 @@
         <!-- Tests -->
         <junit.jupiter.version>5.8.1</junit.jupiter.version>
         <junit.platform.version>1.8.1</junit.platform.version>
+        <assertj.version>3.25.3</assertj.version>
     </properties>
 
     <dependencies>
@@ -69,6 +70,13 @@
             <version>${junit.platform.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj.version}</version>
+            <scope>test</scope>
+        </dependency>
+
 
     </dependencies>
 
