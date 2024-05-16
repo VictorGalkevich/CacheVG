@@ -3,7 +3,9 @@ package cachevg.db.processor;
 public class PingCommandProcessor implements Processor {
     @Override
     public String process(String[] args) {
-        //TODO: implement
-        return null;
+        if (args.length < 1) {
+            return "Empty input";
+        }
+        return "PONG";
     }
 }
