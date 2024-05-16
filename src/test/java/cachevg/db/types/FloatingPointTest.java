@@ -1,6 +1,5 @@
-package cachevg.types;
+package cachevg.db.types;
 
-import cachevg.db.types.FloatingPoint;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +24,7 @@ public class FloatingPointTest {
         Number number = float64t.incrementByValue(increment);
 
         assertEquals(number, expected);
-        assertEquals(float64t.value, String.valueOf(expected));
+        assertEquals(float64t.getValue(), String.valueOf(expected));
     }
 
     @Test
@@ -36,6 +35,6 @@ public class FloatingPointTest {
         Number number = float64t.decrementByValue(decrement);
 
         assertEquals(number, expected);
-        assertEquals(float64t.value, String.valueOf(expected));
+        assertEquals(float64t.getValue(), String.valueOf(expected));
     }
 }

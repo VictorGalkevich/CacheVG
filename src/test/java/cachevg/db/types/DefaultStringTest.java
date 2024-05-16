@@ -1,6 +1,5 @@
-package cachevg.types;
+package cachevg.db.types;
 
-import cachevg.db.types.DefaultString;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -135,7 +134,7 @@ public class DefaultStringTest {
     void testConjunction() {
         String actual = string.conjunction(new String(stringBytes));
 
-        assertEquals(actual, string.value);
+        assertEquals(actual, string.getValue());
     }
 
     @Test
@@ -155,7 +154,7 @@ public class DefaultStringTest {
         Arrays.fill(bytes, (byte) 0);
         String expected = new String(bytes);
 
-        String actual = string.xor(string.value);
+        String actual = string.xor(string.getValue());
 
         assertEquals(expected, actual);
     }

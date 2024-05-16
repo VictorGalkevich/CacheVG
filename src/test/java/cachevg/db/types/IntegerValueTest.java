@@ -1,6 +1,5 @@
-package cachevg.types;
+package cachevg.db.types;
 
-import cachevg.db.types.IntegerValue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +24,7 @@ public class IntegerValueTest {
         Number number = int64t.incrementByValue(increment);
 
         assertEquals(number, expected);
-        assertEquals(int64t.value, String.valueOf(expected));
+        assertEquals(int64t.getValue(), String.valueOf(expected));
     }
 
     @Test
@@ -36,7 +35,7 @@ public class IntegerValueTest {
         Number number = int64t.decrementByValue(decrement);
 
         assertEquals(number, expected);
-        assertEquals(int64t.value, String.valueOf(expected));
+        assertEquals(int64t.getValue(), String.valueOf(expected));
     }
 
     @Test

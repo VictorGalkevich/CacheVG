@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import static cachevg.connector.tcp.parser.ParsingPhase.*;
+
 public class AutomataParser implements MessageParser{
     private static final Logger log = LogManager.getLogger(AutomataParser.class);
 
@@ -27,19 +29,19 @@ public class AutomataParser implements MessageParser{
         var currentMessage = messages.get(clientAddress);
         var msgState = messagesMsgState.get(clientAddress);
         if (msgState == ParsingPhase.HEADER) {
-            if (message[HEADER_INDEX] == ParsingPhase.HEADER) {
-                messagesMsgState.put(clientAddress, ParsingPhase.LENGTH);
+            if (message[HEADER_INDEX] == MessageParser.HEADER) {
+                messagesMsgState.put(clientAddress, LENGTH);
             } else {
                 var headerIdx = -1;
                 for (var idx = 0; idx < message.length && headerIdx < 0; idx++) {
-                    if (message[idx] == ParsingPhase.HEADER) {
+                    if (message[idx] == MessageParser.HEADER) {
                         headerIdx = idx;
                     }
                 }
                 if (headerIdx >= 0) {
                     messageForProcess = new byte[message.length - headerIdx];
                     System.arraycopy(message, headerIdx, messageForProcess, 0, messageForProcess.length);
-                    messagesMsgState.put(clientAddress, ParsingPhase.LENGTH);
+                    messagesMsgState.put(clientAddress, LENGTH);
                 } else {
                     return parsedMsgs;
                 }
@@ -48,25 +50,25 @@ public class AutomataParser implements MessageParser{
         currentMessage.put(messageForProcess);
 
         msgState = messagesMsgState.get(clientAddress);
-        if (msgState == ParsingPhase.LENGTH) {
+        if (msgState == LENGTH) {
             if (currentMessage.position() >= LENGTH_INDEX + 4) {
                 var length = currentMessage.getInt(LENGTH_INDEX);
                 messagesExpectedLength.put(clientAddress, length);
-                messagesMsgState.put(clientAddress, ParsingPhase.BEGIN);
+                messagesMsgState.put(clientAddress, BEGIN);
             } else {
                 return parsedMsgs;
             }
         }
 
         msgState = messagesMsgState.get(clientAddress);
-        if (msgState == ParsingPhase.BEGIN
+        if (msgState == BEGIN
             && currentMessage.position() >= BEGIN_MESSAGE_INDEX
             && currentMessage.get(BEGIN_MESSAGE_INDEX) == BEGIN_MESSAGE) {
-            messagesMsgState.put(clientAddress, ParsingPhase.MESSAGE);
+            messagesMsgState.put(clientAddress, MESSAGE);
         }
 
         msgState = messagesMsgState.get(clientAddress);
-        if (msgState == ParsingPhase.MESSAGE) {
+        if (msgState == MESSAGE) {
             var expectedLength = messagesExpectedLength.get(clientAddress);
             if (currentMessage.position() > BEGIN_MESSAGE_INDEX + expectedLength) {
                 var endMessageIndex = BEGIN_MESSAGE_INDEX + expectedLength + 1;
