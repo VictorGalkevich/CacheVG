@@ -2,6 +2,7 @@ package cachevg.util.runner;
 
 import cachevg.connector.tcp.server.Server;
 import cachevg.connector.tcp.parser.MessageParser;
+import cachevg.db.processor.CommandMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -25,6 +26,7 @@ public class ServerStarter {
 
     public void run() {
         log.info("Starting server...");
+        CommandMapper commandMapper = new CommandMapper();
         executorForProcessing.submit(() -> {
             while (!Thread.currentThread().isInterrupted()) {
                 try {
