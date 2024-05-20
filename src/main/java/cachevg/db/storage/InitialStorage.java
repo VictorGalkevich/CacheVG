@@ -1,24 +1,33 @@
 package cachevg.db.storage;
 
+import cachevg.db.types.AbstractValue;
+import cachevg.db.types.DefaultString;
+
+import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.List;
 
 public class InitialStorage {
-    private static final HashMap<String, String> STORAGE = new HashMap<>();
+    private static final HashMap<String, AbstractValue<?>> STORAGE = new HashMap<>();
     private static final InitialStorage INSTANCE = new InitialStorage();
 
     public String put(String key, String value) {
-        STORAGE.put(key, value);
-        return STORAGE.get(key);
+        STORAGE.put(key, new DefaultString(value, OffsetDateTime.MAX, OffsetDateTime.now()));
+        return STORAGE.get(key).getValue().toString();
     }
 
     public String remove(String key) {
-        return STORAGE.remove(key);
+        return STORAGE.remove(key).getValue().toString();
     }
 
     public String get(String key) {
+        return STORAGE.get(key).getValue().toString();
+    }
+
+    public AbstractValue<?> getObj(String key) {
         return STORAGE.get(key);
     }
+
     public void clear() {
         STORAGE.clear();
     }
