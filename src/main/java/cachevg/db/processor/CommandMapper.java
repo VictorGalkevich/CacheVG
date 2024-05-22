@@ -7,7 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static cachevg.db.command.CommandNames.*;
+import static cachevg.db.command.CommandNames.values;
 
 public class CommandMapper {
     private static final Map<CommandNames, Processor> processors = new HashMap<>();
@@ -23,7 +23,8 @@ public class CommandMapper {
                 Processor o = (Processor) pcp[0].newInstance();
                 processors.put(value, o);
             }
-        } catch (ClassNotFoundException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
+        } catch (ClassNotFoundException | InvocationTargetException | InstantiationException |
+                 IllegalAccessException e) {
             throw new RuntimeException(e);
         }
     }

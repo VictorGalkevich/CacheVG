@@ -15,8 +15,8 @@ public class SbitCommandProcessor implements Processor {
         if (!(obj instanceof DefaultString) || obj.getValue() == null) {
             return "No value persistent by key: %s".formatted(args[0]);
         }
-        int index = 0;
-        int val = 0;
+        int index;
+        int val;
         try {
             index = Integer.parseInt(args[2]);
             val = Integer.parseInt(args[3]);
