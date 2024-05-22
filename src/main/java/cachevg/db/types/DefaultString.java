@@ -32,7 +32,8 @@ public class DefaultString extends AbstractValue<String>{
     }
 
     public String reverse() {
-        return new StringBuilder(this.value).reverse().toString();
+        this.value = new StringBuilder(this.value).reverse().toString();
+        return this.value;
     }
 
     //BitMap operations

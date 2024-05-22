@@ -2,7 +2,6 @@ package cachevg.db.processor;
 
 import cachevg.db.storage.InitialStorage;
 import cachevg.db.types.AbstractValue;
-import cachevg.db.types.DefaultString;
 import cachevg.db.types.IntegerValue;
 import cachevg.db.types.NumericOperations;
 

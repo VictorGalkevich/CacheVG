@@ -11,10 +11,6 @@ public class OrCommandProcessor implements Processor {
             String internal = String.join(" ", args);
             return "Command format must be: [key1] OR [key2], instead got: %s".formatted(internal);
         }
-        return processFiltered(args);
-    }
-
-    static String processFiltered(String[] args) {
         AbstractValue<?> obj = InitialStorage.instance().getObj(args[0]);
         if (!(obj instanceof DefaultString) || obj.getValue() == null) {
             return "No value persistent by key: %s".formatted(args[0]);
@@ -23,6 +19,6 @@ public class OrCommandProcessor implements Processor {
         if (second == null) {
             return "No value persistent by key: %s".formatted(args[1]);
         }
-        return ((DefaultString) obj).conjunction(second);
+        return ((DefaultString) obj).disjunction(second);
     }
 }
