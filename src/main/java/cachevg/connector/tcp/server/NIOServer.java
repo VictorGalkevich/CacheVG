@@ -30,7 +30,6 @@ public class NIOServer implements Server {
     private static final Logger log = LogManager.getLogger(NIOServer.class);
     private static final byte[] EMPTY_ARRAY = new byte[0];
     private static final int TIME_OUT_MS = 100;
-
     private final Unsafe unsafe;
     private final int port;
     private final InetAddress addr;
